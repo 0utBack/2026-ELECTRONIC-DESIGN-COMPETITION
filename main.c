@@ -6,6 +6,7 @@
 #include "Encoder.h"
 #include "Sensor.h"
 #include "control.h"
+#include "SERVO_PID.h"
 
 
 /* USER CODE END Includes */
@@ -67,6 +68,7 @@ int main(void)
     OLED_ShowString(1,12,"s",2);
     delay_ms(500);
     Encoder_Init();
+    pid_init();
 
 
     NVIC_EnableIRQ(TIMER_0_INST_INT_IRQN);
@@ -75,12 +77,13 @@ int main(void)
     NVIC_EnableIRQ(TIMER_1_INST_INT_IRQN);
     DL_Timer_startCounter(TIMER_1_INST);
 
-
     NVIC_EnableIRQ(UART0_INT_IRQn);  //�����ж�
 
+    DL_TimerG_startCounter(SERVO_PWM_INST); //启动舵机PWM定时器
 
-
-
+    //上电回中舵机回中
+    DL_TimerG_setCaptureCompareValue(SERVO_PWM_INST, (uint32_t)SERVO_MOTOR_DUTY(SERVO_MOTOR_MID),DL_TIMER_CC_0_INDEX);
+    
   /* USER CODE END 2 */
 
     while (1) {
@@ -88,11 +91,22 @@ int main(void)
 
         //Key_Scan();
        
-
+        if(sys_tick %10 ==0)
+        {
+            pid_control(&position_cycle, 0, Position);
+        }
+        if(sys_tick %1000 == 0){
+            
+            OLED_ShowSignedNum(3,6,Position,5,2);
+            OLED_ShowSignedNum(5,6,(int8_t)position_cycle.out,5,2);
+        }
+        if(sys_tick %20 == 0){Steer_set(SERVO_MOTOR_MID +(int)(-position_cycle.out));}
         if(flag_en)            //?????????
         {
             Follow_Route(); //�1�7�1�7???????????????
             if(flag == 1)TimeUpdate();
+            
+            
             
             
             //printf("%d , %d\n",EncoderA_VEL,EncoderB_VEL);
@@ -184,7 +198,10 @@ void GROUP1_IRQHandler(void)
 }
 
 void UART_0_INST_IRQHandler(void){
-    //DL_UART_Main_receiveData();
+    if(DL_UART_Main_getPendingInterrupt(UART_0_INST)==DL_UART_MAIN_IIDX_RX){
+        uint8_t data = DL_UART_Main_receiveData(UART_0_INST);
+        UART_RECEIVE(data);
+    }
 }
 
 

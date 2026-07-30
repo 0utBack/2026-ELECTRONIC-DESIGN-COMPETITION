@@ -103,6 +103,18 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 #define GPIO_PWM_0_C1_IOMUX_FUNC                     IOMUX_PINCM29_PF_TIMA0_CCP1
 #define GPIO_PWM_0_C1_IDX                                    DL_TIMER_CC_1_INDEX
 
+/* Defines for SERVO_PWM */
+#define SERVO_PWM_INST                                                     TIMG7
+#define SERVO_PWM_INST_IRQHandler                               TIMG7_IRQHandler
+#define SERVO_PWM_INST_INT_IRQN                                 (TIMG7_INT_IRQn)
+#define SERVO_PWM_INST_CLK_FREQ                                          3200000
+/* GPIO defines for channel 0 */
+#define GPIO_SERVO_PWM_C0_PORT                                             GPIOB
+#define GPIO_SERVO_PWM_C0_PIN                                     DL_GPIO_PIN_15
+#define GPIO_SERVO_PWM_C0_IOMUX                                  (IOMUX_PINCM32)
+#define GPIO_SERVO_PWM_C0_IOMUX_FUNC                 IOMUX_PINCM32_PF_TIMG7_CCP0
+#define GPIO_SERVO_PWM_C0_IDX                                DL_TIMER_CC_0_INDEX
+
 
 
 /* Defines for TIMER_0 */
@@ -291,6 +303,7 @@ void SYSCFG_DL_SYSCTL_init(void);
 
 bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 void SYSCFG_DL_PWM_0_init(void);
+void SYSCFG_DL_SERVO_PWM_init(void);
 void SYSCFG_DL_TIMER_0_init(void);
 void SYSCFG_DL_TIMER_Encoder_Read_init(void);
 void SYSCFG_DL_TIMER_1_init(void);

@@ -1,0 +1,49 @@
+#include "sys.h"
+
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     双边限幅 数据范围是 [-32768,32767]
+// 参数说明     x               被限幅的数据
+// 参数说明     a               限幅范围左边界
+// 参数说明     b               限幅范围右边界
+// 返回参数     int             限幅之后的数据
+// 使用示例     int dat = func_limit_ab(500, -300, 400);        //数据被限制在-300至+400之间  因此返回的结果是400
+// 备注信息
+//-------------------------------------------------------------------------------------------------------------------
+#define     func_limit_ab(x, a, b)  ((x) < (a) ? (a) : ((x) > (b) ? (b) : (x)))
+
+#define SERVO_MOTOR_FREQ            (320)                                        // 定义主板上舵机频率  请务必注意范围
+#define SERVO_MOTOR_MID             (135)                     //135                   
+#define SERVO_MOTOR_LMAX            (105)                                        
+#define SERVO_MOTOR_RMAX            (155)                                       
+#define SERVO_MOTOR_DUTY(x)         ((float)10000.0/(1000.0/(float)SERVO_MOTOR_FREQ)*(0.5+(float)(x)/90.0))// ------------------ 舵机占空比计算方式 ------------------
+
+
+typedef struct
+{
+    float p;                                             // PID 控制器比例项 P
+    float i;                                             // PID 控制器积分项 I
+    float d;                                             // PID 控制器微分项 D
+    float p_value_last;                                  // 上一次偏差值
+    float i_value;                                       // PID 积分值
+    float i_value_pro;                                   // PID 积分值的比例（范围 0 - 1，用于限制积分增长速度）
+    float i_value_max;                                   // PID 积分值上限
+    float out;                                           // PID 控制器输出值
+    float out_max;                                       // PID 输出值上限
+    float incremental_data[2];                           // 增量式 PID 的偏差历史数据
+} pid_cycle_struct;
+
+
+
+extern volatile uint16_t target_angle; // 目标角度（0~300）
+extern volatile int flag; 
+extern volatile int flag_en; 
+extern volatile int8_t Position;
+
+extern pid_cycle_struct position_cycle;
+extern pid_cycle_struct angle_cycle;
+
+void Steer_set(int angle);
+void pid_init(void);
+void pid_control (pid_cycle_struct *pid_cycle, float target, float real);
+void UART_RECEIVE(uint8_t DATA);
