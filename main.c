@@ -90,17 +90,18 @@ int main(void)
 
 
         //Key_Scan();
-       
-        if(sys_tick %10 ==0)
-        {
-            pid_control(&position_cycle, 0, Position);
-        }
+        three_question();
+
         if(sys_tick %1000 == 0){
             
             OLED_ShowSignedNum(3,6,Position,5,2);
             OLED_ShowSignedNum(5,6,(int8_t)position_cycle.out,5,2);
         }
-        if(sys_tick %20 == 0){Steer_set(SERVO_MOTOR_MID +(int)(-position_cycle.out));}
+        // if(sys_tick %10 ==0)
+        // {
+        //     pid_control(&position_cycle, 0, Position);
+        // }
+        // if(sys_tick %20 == 0){Steer_set(SERVO_MOTOR_MID +(int)(-position_cycle.out));}
         if(flag_en)            //?????????
         {
             Follow_Route(); //�1�7�1�7???????????????

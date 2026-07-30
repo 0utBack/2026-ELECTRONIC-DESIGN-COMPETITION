@@ -14,8 +14,8 @@
 
 #define SERVO_MOTOR_FREQ            (320)                                        // 定义主板上舵机频率  请务必注意范围
 #define SERVO_MOTOR_MID             (135)                     //135                   
-#define SERVO_MOTOR_LMAX            (105)                                        
-#define SERVO_MOTOR_RMAX            (155)                                       
+#define SERVO_MOTOR_LMAX            (90)                                        
+#define SERVO_MOTOR_RMAX            (175)                                       
 #define SERVO_MOTOR_DUTY(x)         ((float)10000.0/(1000.0/(float)SERVO_MOTOR_FREQ)*(0.5+(float)(x)/90.0))// ------------------ 舵机占空比计算方式 ------------------
 
 
@@ -38,7 +38,9 @@ typedef struct
 extern volatile uint16_t target_angle; // 目标角度（0~300）
 extern volatile int flag; 
 extern volatile int flag_en; 
-extern volatile int8_t Position;
+extern volatile int16_t Position;
+
+extern  volatile uint32_t sys_tick;
 
 extern pid_cycle_struct position_cycle;
 extern pid_cycle_struct angle_cycle;
@@ -47,3 +49,4 @@ void Steer_set(int angle);
 void pid_init(void);
 void pid_control (pid_cycle_struct *pid_cycle, float target, float real);
 void UART_RECEIVE(uint8_t DATA);
+void three_question(void);

@@ -8,7 +8,7 @@ static uint8_t rx_state = 0; // 0:等待帧头
 volatile uint8_t new_command = 0; // 主循环检查用
 volatile uint16_t target_angle = 0; // 目标角度（0~300）
 
-volatile int8_t Position = 0;//小球位置
+volatile int16_t Position = 0;//小球位置
 
 
 pid_cycle_struct position_cycle;
@@ -42,9 +42,9 @@ void pid_control (pid_cycle_struct *pid_cycle, float target, float real)
 void pid_init(void)
 {
     //P/I/D参数
-    position_cycle.p =  0.5f;
-    position_cycle.i =  0.01f;
-    position_cycle.d =  0.0f;
+    position_cycle.p =  0.12f;
+    position_cycle.i =  0.04f;
+    position_cycle.d =  6.5f;
 
     angle_cycle.p = 1.0f;
     angle_cycle.i = 1.0f;
@@ -72,18 +72,47 @@ void Steer_set(int angle){
 
 
 void UART_RECEIVE(uint8_t DATA){
+    static uint8_t rx_buf[2];
     //if(DATA == 0x11){flag_en = 1;flag = 1;}
     //if(DATA == 0x66){flag_en = 0;flag = 0;}
      switch (rx_state) {
-            case 0: // 等待帧头 0xAA
-                if (DATA == 0xAA) {
-                    rx_state = 1;
-                }
-                break;
-            case 1: // 角度高字节
-                Position=(int8_t)DATA;
-                rx_state = 0;
-                break;
-        }
+        case 0:                 // 等待帧头 0xAA
+            if (DATA == 0xAA) {
+                rx_state = 1;
+            }
+            break;
+
+        case 1:                 // 接收高字节
+            rx_buf[0] = DATA;
+            rx_state = 2;
+            break;
+
+        case 2:                 // 接收低字节并组合
+            rx_buf[1] = DATA;
+            Position = (int16_t)((rx_buf[0] << 8) | rx_buf[1]);  // 高字节在前
+            rx_state = 0;       // 回到等待帧头状态
+            break;
+
+        default:
+            rx_state = 0;
+            break;
+    }
+}
+
+
+
+//
+void three_question(void){
+    float A = 0.9;
+    static float filtered_position = 0;
+    
+    if (sys_tick % 5 == 0) {
+        float raw = (float)Position;      
+        filtered_position = A * raw + (1.0f - A) * filtered_position;
+        pid_control(&position_cycle, 0, filtered_position);
+    }
+    
+    Steer_set(SERVO_MOTOR_MID +(int)(-position_cycle.out));
+    
 }
 
