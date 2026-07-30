@@ -58,6 +58,10 @@ int main(void)
     //�����ǻ����ж�ȡ��                  
     //NVIC_EnableIRQ(TIMER_1_INST_INT_IRQN);      
     //DL_Timer_startCounter(TIMER_1_INST);
+
+    OLED_Init();
+    OLED_CLS();
+
     OLED_ShowString(1,1,"TIME:",2);
     OLED_ShowNum(1,6,second,5,2);
     OLED_ShowString(1,12,"s",2);
@@ -76,8 +80,6 @@ int main(void)
 
 
 
-    OLED_Init();
-    OLED_CLS();
 
   /* USER CODE END 2 */
 

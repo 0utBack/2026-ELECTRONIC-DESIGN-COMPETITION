@@ -87,7 +87,7 @@ MPU6050/inv_mpu_dmp_motion_driver.o: \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/dl_wwdt.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_interrupt.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_systick.h \
- D:/TiProject/2026-Electronic-Design-Competition-master/sys/sys.h
+ D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/sys/sys.h
 ../MPU6050/inv_mpu.h:
 ../MPU6050/inv_mpu_dmp_motion_driver.h:
 ../MPU6050/dmpKey.h:
@@ -175,4 +175,4 @@ C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/dl_vref.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/dl_wwdt.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_interrupt.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_systick.h:
-D:/TiProject/2026-Electronic-Design-Competition-master/sys/sys.h:
+D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/sys/sys.h:

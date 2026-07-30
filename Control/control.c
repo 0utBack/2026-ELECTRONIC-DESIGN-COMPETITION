@@ -5,7 +5,7 @@
 
 //速度环PID
 #define   Kp1   	70
-#define   Ki1     	0.55
+#define   Ki1     	1.75
 #define   Kd1  		0.0
 
 
@@ -18,7 +18,7 @@
 
 
 /*************************************/
-float Speed_Middle = 20;			                    //中值速度
+float Speed_Middle = 30;			                    //中值速度
 int Motor_Left, Motor_Right;		                    //左右马达占空比
 
 extern float Yaw;

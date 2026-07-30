@@ -84,7 +84,7 @@ MPU6050/mspm0_i2c.o: ../MPU6050/mspm0_i2c.c \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/dl_wwdt.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_interrupt.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_systick.h \
- D:/TiProject/2026-Electronic-Design-Competition-master/sys/sys.h \
+ D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/sys/sys.h \
  ../MPU6050/mspm0_i2c.h
 ti_msp_dl_config.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/msp/msp.h:
@@ -169,5 +169,5 @@ C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/dl_vref.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/dl_wwdt.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_interrupt.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_systick.h:
-D:/TiProject/2026-Electronic-Design-Competition-master/sys/sys.h:
+D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/sys/sys.h:
 ../MPU6050/mspm0_i2c.h:

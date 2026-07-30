@@ -1,6 +1,6 @@
 #include "Sensor.h"
 
-#define Black_CNT1          8000                               //mode = 1 �1�7�1�7�1�7�1�9�1�7�1�7�1�7�1�7�1�7�1�7�1�7
+#define Black_CNT1          5000                               //mode = 1 �1�7�1�7�1�7�1�9�1�7�1�7�1�7�1�7�1�7�1�7�1�7
 #define Black_CNT2          5000                               //mode = 2 �1�7�1�7�1�7�1�9�1�7�1�7�1�7�1�7�1�7�1�7�1�7
 #define Black_CNT3          5000                               //mode = 3�1�7�1�74 �1�7�1�7�1�7�1�9�1�7�1�7�1�7�1�7�1�7�1�7�1�7
 
@@ -27,7 +27,19 @@ int Follow_Route(void)
     {
         if(flag == 1)                                                    //AB�1�7�1�7�0�6��
         {
-            if( (P3) && (P4) && (P5) )        //�1�7�1�7�0�5�1�7�1�7�1�7�8�9�1�7�1�7�1�7�1�7
+            if( (P1) && (P2) && (P3) )        //�1�7�1�7�0�5�1�7�1�7�1�7�8�9�1�7�1�7�1�7�1�7
+            {
+                cnt++;
+
+                if(cnt > Black_CNT1)                                    
+                {
+                    flag_LED = 1;
+                    flag = 0;
+                    cnt = 0;
+                    return 0;
+                }
+            }
+            if( (P5) && (P6) && (P7) )        //�1�7�1�7�0�5�1�7�1�7�1�7�8�9�1�7�1�7�1�7�1�7
             {
                 cnt++;
 
@@ -66,42 +78,42 @@ int Incremental_Quantity(void)
 
     if(!P1)
     {
-        value -= 35;
+        value -= 38;
         count++;
     }
     if(!P2)
     {
-        value -= 22;
+        value -= 28;
         count++;
     }
     if(!P3)
     {
-        value -= 18;
+        value -= 21;
         count++;
     }
     if(!P4)
     {
-        value -= 11;
+        value -= 14;
         count++;
     }
     if(!P5)
     {
-        value += 11;
+        value += 14;
         count++;
     }
     if(!P6)
     {
-        value += 18;
+        value += 21;
         count++;
     }
     if(!P7)
     {
-        value += 22;
+        value += 28;
         count++;
     }
     if(!P8)
     {
-        value += 35;
+        value += 38;
         count++;
     }
 

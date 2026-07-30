@@ -1,7 +1,7 @@
 # FIXED
 
 Control/control.o: ../Control/control.c ../Control/control.h \
- D:/TiProject/2026-Electronic-Design-Competition-master/sys/sys.h \
+ D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/sys/sys.h \
  ti_msp_dl_config.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/msp/msp.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/DeviceFamily.h \
@@ -85,9 +85,9 @@ Control/control.o: ../Control/control.c ../Control/control.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/dl_wwdt.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_interrupt.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_systick.h \
- D:/TiProject/2026-Electronic-Design-Competition-master/Sensor/Sensor.h
+ D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Sensor/Sensor.h
 ../Control/control.h:
-D:/TiProject/2026-Electronic-Design-Competition-master/sys/sys.h:
+D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/sys/sys.h:
 ti_msp_dl_config.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/msp/msp.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/DeviceFamily.h:
@@ -171,4 +171,4 @@ C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/dl_vref.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/dl_wwdt.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_interrupt.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_systick.h:
-D:/TiProject/2026-Electronic-Design-Competition-master/Sensor/Sensor.h:
+D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Sensor/Sensor.h:

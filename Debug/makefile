@@ -140,20 +140,20 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-2026-Electronic-Design-Competition-master.out 
+Automatic_Driving.out 
 
 EXE_OUTPUTS__QUOTED += \
-"2026-Electronic-Design-Competition-master.out" 
+"Automatic_Driving.out" 
 
 
 # All Target
 all: $(OBJS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "2026-Electronic-Design-Competition-master.out"
+	@$(MAKE) --no-print-directory -Onone "Automatic_Driving.out"
 
 # Tool invocations
-2026-Electronic-Design-Competition-master.out: $(OBJS) $(GEN_CMDS)
+Automatic_Driving.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Arm Linker - building target: "$@"'
-	"C:/TI/ti_cgt_arm_llvm_4.0.2.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O0 -gdwarf-3 -Wl,-m"2026-Electronic-Design-Competition-master.map" -Wl,-i"C:/TI/mspm0_sdk_2_10_00_04/source" -Wl,-i"D:/TiProject/2026-Electronic-Design-Competition-master" -Wl,-i"D:/TiProject/2026-Electronic-Design-Competition-master/Debug/syscfg" -Wl,-i"C:/TI/ti_cgt_arm_llvm_4.0.2.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="2026-Electronic-Design-Competition-master_linkInfo.xml" -Wl,--rom_model -o "2026-Electronic-Design-Competition-master.out" $(ORDERED_OBJS)
+	"C:/TI/ti_cgt_arm_llvm_4.0.2.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O0 -gdwarf-3 -Wl,-m"Automatic_Driving.map" -Wl,-i"C:/TI/mspm0_sdk_2_10_00_04/source" -Wl,-i"D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION" -Wl,-i"D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Debug/syscfg" -Wl,-i"C:/TI/ti_cgt_arm_llvm_4.0.2.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="Automatic_Driving_linkInfo.xml" -Wl,--rom_model -o "Automatic_Driving.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 

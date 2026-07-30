@@ -2,7 +2,7 @@
 
 MPU6050/inv_mpu.o: ../MPU6050/inv_mpu.c ../MPU6050/inv_mpu.h \
  ../MPU6050/mspm0_i2c.h \
- D:/TiProject/2026-Electronic-Design-Competition-master/sys/sys.h \
+ D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/sys/sys.h \
  ti_msp_dl_config.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/msp/msp.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/DeviceFamily.h \
@@ -88,7 +88,7 @@ MPU6050/inv_mpu.o: ../MPU6050/inv_mpu.c ../MPU6050/inv_mpu.h \
  C:/TI/mspm0_sdk_2_10_00_04/source/ti/driverlib/m0p/dl_systick.h
 ../MPU6050/inv_mpu.h:
 ../MPU6050/mspm0_i2c.h:
-D:/TiProject/2026-Electronic-Design-Competition-master/sys/sys.h:
+D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/sys/sys.h:
 ti_msp_dl_config.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/msp/msp.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/DeviceFamily.h:
