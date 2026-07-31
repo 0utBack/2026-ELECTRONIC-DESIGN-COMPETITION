@@ -122,6 +122,7 @@ SUBDIRS := \
 Control \
 Encoder \
 GYRO \
+Key \
 MPU6050 \
 OLED \
 Sensor \

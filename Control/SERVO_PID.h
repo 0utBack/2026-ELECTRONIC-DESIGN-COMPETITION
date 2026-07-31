@@ -1,5 +1,6 @@
 #include "sys.h"
-
+#ifndef __SERVO_PID__
+#define __SERVO_PID__
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     双边限幅 数据范围是 [-32768,32767]
@@ -13,9 +14,9 @@
 #define     func_limit_ab(x, a, b)  ((x) < (a) ? (a) : ((x) > (b) ? (b) : (x)))
 
 #define SERVO_MOTOR_FREQ            (320)                                        // 定义主板上舵机频率  请务必注意范围
-#define SERVO_MOTOR_MID             (135)                     //135                   
-#define SERVO_MOTOR_LMAX            (90)                                        
-#define SERVO_MOTOR_RMAX            (175)                                       
+#define SERVO_MOTOR_MID             (125)                     //135         
+#define SERVO_MOTOR_LMAX            (60)                                        
+#define SERVO_MOTOR_RMAX            (170)                                       
 #define SERVO_MOTOR_DUTY(x)         ((float)10000.0/(1000.0/(float)SERVO_MOTOR_FREQ)*(0.5+(float)(x)/90.0))// ------------------ 舵机占空比计算方式 ------------------
 
 
@@ -34,6 +35,15 @@ typedef struct
 } pid_cycle_struct;
 
 
+typedef enum {
+    WAIT_HEADER,      // 等待帧头 0xAA
+    WAIT_SPD_H,       // 等待速度高字节
+    WAIT_SPD_L,       // 等待速度低字节
+    WAIT_DX_H,        // 等待位移高字节
+    WAIT_DX_L         // 等待位移低字节
+} RxState;
+
+
 
 extern volatile uint16_t target_angle; // 目标角度（0~300）
 extern volatile int flag; 
@@ -47,6 +57,10 @@ extern pid_cycle_struct angle_cycle;
 
 void Steer_set(int angle);
 void pid_init(void);
+void pid_set(float Kp,float Ki,float Kd);
 void pid_control (pid_cycle_struct *pid_cycle, float target, float real);
 void UART_RECEIVE(uint8_t DATA);
+void UART_RECEIVE1(uint8_t DATA);
 void three_question(void);
+
+#endif

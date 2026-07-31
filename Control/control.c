@@ -1,18 +1,6 @@
 #include "control.h"
 #include "Sensor.h"
 
-#define  Limit		2000			//PWM波限幅
-
-//速度环PID
-#define   Kp1   	70
-#define   Ki1     	1.75
-#define   Kd1  		0.0
-
-
-//陀螺仪PID
-#define   Kp3       1
-#define   Ki3       0
-#define   Kd3  	    0
 
 
 
@@ -20,6 +8,8 @@
 /*************************************/
 float Speed_Middle = 30;			                    //中值速度
 int Motor_Left, Motor_Right;		                    //左右马达占空比
+float KP1,KI1,KD1;
+
 
 extern float Yaw;
 extern volatile int mode;
@@ -42,8 +32,9 @@ void Control(void)
 
 
     /* 模式一、二 */
+    if(mode == 2)bias = Incremental_Quantity();  
+    if(mode == 4)bias = Incremental_Quantity1();  
 
-    bias = Incremental_Quantity();    
 
     /* 模式三、四 */
 
@@ -109,7 +100,7 @@ float PID_A(float Encoder,float Target)
 {
 	static float Bias, Last_bias, Last2_bias, Pwm;
 	Bias = Target - Encoder;
-	Pwm += Kp1 * (Bias - Last_bias) + Ki1 * Bias + Kd1 * (Bias - 2 * Last_bias + Last2_bias);
+	Pwm += KP1 * (Bias - Last_bias) + KI1 * Bias + KD1 * (Bias - 2 * Last_bias + Last2_bias);
 
 	Last_bias = Bias;
 	Last2_bias = Last_bias;
@@ -123,7 +114,7 @@ float PID_B(float Encoder,float Target)
 {
 	static float Bias, Last_bias, Last2_bias, Pwm;
 	Bias = Target-Encoder;
-	Pwm += Kp1 * (Bias - Last_bias) + Ki1 * Bias + Kd1 * (Bias - 2 * Last_bias + Last2_bias);
+	Pwm += KP1 * (Bias - Last_bias) + KI1 * Bias + KD1 * (Bias - 2 * Last_bias + Last2_bias);
 
 	Last_bias = Bias;
 	Last2_bias = Last_bias;

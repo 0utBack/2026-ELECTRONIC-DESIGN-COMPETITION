@@ -89,7 +89,8 @@ main.o: ../main.c \
  D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Encoder/Encoder.h \
  D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Sensor/Sensor.h \
  D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Control/control.h \
- D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Control/SERVO_PID.h
+ D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Control/SERVO_PID.h \
+ D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Key/KeyScan.h
 ti_msp_dl_config.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/msp/msp.h:
 C:/TI/mspm0_sdk_2_10_00_04/source/ti/devices/DeviceFamily.h:
@@ -179,3 +180,4 @@ D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Encoder/Encoder.h:
 D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Sensor/Sensor.h:
 D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Control/control.h:
 D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Control/SERVO_PID.h:
+D:/TiProject/2026-ELECTRONIC-DESIGN-COMPETITION/Key/KeyScan.h:

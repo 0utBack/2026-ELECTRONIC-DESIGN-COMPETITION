@@ -41,6 +41,7 @@
                                     <listOptionValue value="${PROJECT_ROOT}/Sensor"/>
                                     <listOptionValue value="${PROJECT_ROOT}/GYRO"/>
                                     <listOptionValue value="${PROJECT_ROOT}/Encoder"/>
+                                    <listOptionValue value="${PROJECT_ROOT}/Key"/>
                                     <listOptionValue value="${PROJECT_ROOT}/sys"/>
                                     <listOptionValue value="${PROJECT_ROOT}/${ConfigName}"/>
                                     <listOptionValue value="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include"/>

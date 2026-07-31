@@ -17,6 +17,7 @@ ORDERED_OBJS += \
 "./Control/control.o" \
 "./Encoder/Encoder.o" \
 "./GYRO/GYRO.o" \
+"./Key/KeyScan.o" \
 "./MPU6050/inv_mpu.o" \
 "./MPU6050/inv_mpu_dmp_motion_driver.o" \
 "./MPU6050/mpu6050.o" \
@@ -39,6 +40,7 @@ RMDIR := RMDIR /S/Q
 -include Control/subdir_vars.mk
 -include Encoder/subdir_vars.mk
 -include GYRO/subdir_vars.mk
+-include Key/subdir_vars.mk
 -include MPU6050/subdir_vars.mk
 -include OLED/subdir_vars.mk
 -include Sensor/subdir_vars.mk
@@ -47,6 +49,7 @@ RMDIR := RMDIR /S/Q
 -include Control/subdir_rules.mk
 -include Encoder/subdir_rules.mk
 -include GYRO/subdir_rules.mk
+-include Key/subdir_rules.mk
 -include MPU6050/subdir_rules.mk
 -include OLED/subdir_rules.mk
 -include Sensor/subdir_rules.mk
@@ -161,8 +164,8 @@ Automatic_Driving.out: $(OBJS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "Control\SERVO_PID.o" "Control\control.o" "Encoder\Encoder.o" "GYRO\GYRO.o" "MPU6050\inv_mpu.o" "MPU6050\inv_mpu_dmp_motion_driver.o" "MPU6050\mpu6050.o" "MPU6050\mspm0_i2c.o" "OLED\oled.o" "Sensor\Sensor.o" "sys\sys.o" 
-	-$(RM) "main.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "Control\SERVO_PID.d" "Control\control.d" "Encoder\Encoder.d" "GYRO\GYRO.d" "MPU6050\inv_mpu.d" "MPU6050\inv_mpu_dmp_motion_driver.d" "MPU6050\mpu6050.d" "MPU6050\mspm0_i2c.d" "OLED\oled.d" "Sensor\Sensor.d" "sys\sys.d" 
+	-$(RM) "main.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "Control\SERVO_PID.o" "Control\control.o" "Encoder\Encoder.o" "GYRO\GYRO.o" "Key\KeyScan.o" "MPU6050\inv_mpu.o" "MPU6050\inv_mpu_dmp_motion_driver.o" "MPU6050\mpu6050.o" "MPU6050\mspm0_i2c.o" "OLED\oled.o" "Sensor\Sensor.o" "sys\sys.o" 
+	-$(RM) "main.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "Control\SERVO_PID.d" "Control\control.d" "Encoder\Encoder.d" "GYRO\GYRO.d" "Key\KeyScan.d" "MPU6050\inv_mpu.d" "MPU6050\inv_mpu_dmp_motion_driver.d" "MPU6050\mpu6050.d" "MPU6050\mspm0_i2c.d" "OLED\oled.d" "Sensor\Sensor.d" "sys\sys.d" 
 	-@echo ' '
 
 .PHONY: all clean dependents

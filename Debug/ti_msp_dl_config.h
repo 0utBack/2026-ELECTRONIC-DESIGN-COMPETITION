@@ -283,15 +283,14 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 #define Sensor_P1_2_PORT                                                 (GPIOA)
 #define Sensor_P1_2_PIN                                          (DL_GPIO_PIN_2)
 #define Sensor_P1_2_IOMUX                                         (IOMUX_PINCM7)
-/* Port definition for Pin Group KEY */
-#define KEY_PORT                                                         (GPIOB)
-
-/* Defines for S2: GPIOB.1 with pinCMx 13 on package pin 48 */
-#define KEY_S2_PIN                                               (DL_GPIO_PIN_1)
-#define KEY_S2_IOMUX                                             (IOMUX_PINCM13)
-/* Defines for EN: GPIOB.4 with pinCMx 17 on package pin 52 */
-#define KEY_EN_PIN                                               (DL_GPIO_PIN_4)
-#define KEY_EN_IOMUX                                             (IOMUX_PINCM17)
+/* Defines for EN: GPIOA.18 with pinCMx 40 on package pin 11 */
+#define KEY_EN_PORT                                                      (GPIOA)
+#define KEY_EN_PIN                                              (DL_GPIO_PIN_18)
+#define KEY_EN_IOMUX                                             (IOMUX_PINCM40)
+/* Defines for SW: GPIOB.21 with pinCMx 49 on package pin 20 */
+#define KEY_SW_PORT                                                      (GPIOB)
+#define KEY_SW_PIN                                              (DL_GPIO_PIN_21)
+#define KEY_SW_IOMUX                                             (IOMUX_PINCM49)
 
 
 /* clang-format on */

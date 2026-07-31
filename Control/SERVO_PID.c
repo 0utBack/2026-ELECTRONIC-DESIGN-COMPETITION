@@ -1,4 +1,5 @@
 #include "SERVO_PID.h"
+#include"control.h"
 
 
 #define RX_BUF_SIZE 3
@@ -7,6 +8,11 @@ static uint8_t rx_idx = 0;
 static uint8_t rx_state = 0; // 0:等待帧头
 volatile uint8_t new_command = 0; // 主循环检查用
 volatile uint16_t target_angle = 0; // 目标角度（0~300）
+
+
+volatile bool frame_ready = false;   // 通知主循环新数据已就绪
+volatile int16_t ball_speed = 0;     // 小球速度（带符号，单位根据需要标定）
+volatile int16_t ball_dx = 0;        // 小球位移/位置偏差（带符号）
 
 volatile int16_t Position = 0;//小球位置
 
@@ -42,9 +48,9 @@ void pid_control (pid_cycle_struct *pid_cycle, float target, float real)
 void pid_init(void)
 {
     //P/I/D参数
-    position_cycle.p =  0.12f;
-    position_cycle.i =  0.04f;
-    position_cycle.d =  6.5f;
+    position_cycle.p =  0.4f;
+    position_cycle.i =  0.08f;
+    position_cycle.d =  8.5f;
 
     angle_cycle.p = 1.0f;
     angle_cycle.i = 1.0f;
@@ -52,13 +58,20 @@ void pid_init(void)
 
 
     //PID限幅参数
-    position_cycle.i_value_max = 200.0f;
+    position_cycle.i_value_max = 100.0f;
     position_cycle.i_value_pro = 1.0f;
-    position_cycle.out_max = 200.0f;
+    position_cycle.out_max = 60.0f;
 
     angle_cycle.i_value_max = 1.0f;
     angle_cycle.i_value_pro = 1.0f;
     angle_cycle.out_max = 1.0f;
+}
+
+void pid_set(float Kp,float Ki,float Kd){
+
+    KP1 = Kp;   	
+    KI1 = Ki;    	
+    KD1 = Kd;  		
 }
 
 
@@ -100,9 +113,98 @@ void UART_RECEIVE(uint8_t DATA){
 }
 
 
+void UART_RECEIVE1(uint8_t DATA) {
+    static RxState rx_state = WAIT_HEADER;  // 静态变量保持状态
+    static uint8_t rx_buf[4];               // 存放 4 个数据字节
 
-//
-void three_question(void){
+    switch (rx_state) {
+    case WAIT_HEADER:
+        if (DATA == 0xAA) {   // 帧头可定义为 FRAME_HEADER
+            rx_state = WAIT_SPD_H;
+        }
+        break;
+
+    case WAIT_SPD_H:
+        rx_buf[0] = DATA;     // 速度高字节
+        rx_state = WAIT_SPD_L;
+        break;
+
+    case WAIT_SPD_L:
+        rx_buf[1] = DATA;     // 速度低字节
+        rx_state = WAIT_DX_H;
+        break;
+
+    case WAIT_DX_H:
+        rx_buf[2] = DATA;     // 位移高字节
+        rx_state = WAIT_DX_L;
+        break;
+
+    case WAIT_DX_L:
+        rx_buf[3] = DATA;     // 位移低字节
+        // 组合两个 16 位值（大端序）
+        ball_speed = (int16_t)((rx_buf[0] << 8) | rx_buf[1]);
+        Position    = (int16_t)((rx_buf[2] << 8) | rx_buf[3]);
+        frame_ready = true;   // 通知主循环
+        rx_state = WAIT_HEADER; // 重新等待下一帧
+        break;
+
+    default:
+        rx_state = WAIT_HEADER;
+        break;
+    }
+}
+
+
+
+//            Steer_set(SERVO_MOTOR_MID - 50 );//往左滚
+//            Steer_set(SERVO_MOTOR_MID + 50 ); //往右滚
+void three_question(void){  //先往右5cm 再往左10cm并停止
+
+
+    if (sys_tick < 450) {
+        // 0 ~ 499ms
+        Steer_set(SERVO_MOTOR_MID + 100);
+    }
+    else if (sys_tick < 1600) {
+        // 500 ~ 999ms
+        Steer_set(SERVO_MOTOR_MID - 100);
+    }
+    else if (sys_tick <2200) {
+        Steer_set(SERVO_MOTOR_MID +100);
+    }
+        else if (sys_tick <5000) {
+        Steer_set(SERVO_MOTOR_MID);
+    }
+    // float A = 0.9;
+    // static float filtered_position = 0;
+    
+    // if (sys_tick % 5 == 0) {
+    //     float raw = (float)Position;      
+    //     filtered_position = A * raw + (1.0f - A) * filtered_position;
+    //     pid_control(&position_cycle, 0, filtered_position);
+    // }
+    // Steer_set(SERVO_MOTOR_MID +(int)(-position_cycle.out));
+    
+}
+
+
+
+void four_quesition(void){
+    // pid_set(12,1.75,0);
+    // Speed_Middle = 12;
+    // if(sys_tick>=100)flag = 1;
+    // if(sys_tick<=500)Steer_set(SERVO_MOTOR_RMAX );
+    // else if(sys_tick<=1200)Steer_set(SERVO_MOTOR_MID);
+
+    // if(sys_tick<8100&&sys_tick>7800){
+
+    //     Steer_set(SERVO_MOTOR_LMAX);
+    // }
+    // if(sys_tick>=8100){
+    //     flag=0;
+    //     flag_en = 0;
+    //     Steer_set(SERVO_MOTOR_MID);
+    // }else if(sys_tick>=8400){Steer_set(SERVO_MOTOR_MID);}
     float A = 0.9;
     static float filtered_position = 0;
     
@@ -111,8 +213,19 @@ void three_question(void){
         filtered_position = A * raw + (1.0f - A) * filtered_position;
         pid_control(&position_cycle, 0, filtered_position);
     }
+    Steer_set(SERVO_MOTOR_MID +(int)(-position_cycle.out));
+
+}
+
+void five_question(void){
+    float A = 0.9;
+    static float filtered_position = 0;
     
+    if (sys_tick % 5 == 0) {
+        float raw = (float)Position;      
+        filtered_position = A * raw + (1.0f - A) * filtered_position;
+        pid_control(&position_cycle, 0, filtered_position);
+    }
     Steer_set(SERVO_MOTOR_MID +(int)(-position_cycle.out));
     
 }
-

@@ -14,11 +14,11 @@
 #define P8          DL_GPIO_readPins(Sensor_P8_PORT,Sensor_P8_PIN)
 
 
-
 int Follow_Route(void);
 
 
 
 int Incremental_Quantity(void);
+int Incremental_Quantity1(void);
 
 #endif
