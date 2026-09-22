@@ -38,7 +38,7 @@
 - **平衡控制**：同步双串 PID
   - **外环（位置环）**：钢球偏移量 → 期望速度
   - **内环（速度环）**：期望速度与实测速度偏差 → 舵机 PWM
-- **通信协议**：`[0xAA][ΔPosition_H][ΔPosition_L][ΔSpeed]`，50Hz 更新。
+- **通信协议**：`[0xAA][ΔPosition_H][ΔPosition_L][ΔSpeed_H][ΔSpeed_L]`，50Hz 更新。
 
 ## 📁 目录结构
 
