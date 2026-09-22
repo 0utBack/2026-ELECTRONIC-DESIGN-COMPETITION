@@ -291,6 +291,14 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 #define KEY_SW_PORT                                                      (GPIOB)
 #define KEY_SW_PIN                                              (DL_GPIO_PIN_21)
 #define KEY_SW_IOMUX                                             (IOMUX_PINCM49)
+/* Defines for Up: GPIOA.27 with pinCMx 60 on package pin 31 */
+#define KEY_Up_PORT                                                      (GPIOA)
+#define KEY_Up_PIN                                              (DL_GPIO_PIN_27)
+#define KEY_Up_IOMUX                                             (IOMUX_PINCM60)
+/* Defines for Down: GPIOA.17 with pinCMx 39 on package pin 10 */
+#define KEY_Down_PORT                                                    (GPIOA)
+#define KEY_Down_PIN                                            (DL_GPIO_PIN_17)
+#define KEY_Down_IOMUX                                           (IOMUX_PINCM39)
 
 
 /* clang-format on */

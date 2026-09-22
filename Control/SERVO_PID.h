@@ -45,22 +45,22 @@ typedef enum {
 
 
 
-extern volatile uint16_t target_angle; // 目标角度（0~300）
-extern volatile int flag; 
-extern volatile int flag_en; 
+extern volatile int flag;
+extern volatile int flag_en;
 extern volatile int16_t Position;
+extern volatile int16_t SetPosition;
 
 extern  volatile uint32_t sys_tick;
 
 extern pid_cycle_struct position_cycle;
-extern pid_cycle_struct angle_cycle;
 
 void Steer_set(int angle);
 void pid_init(void);
 void pid_set(float Kp,float Ki,float Kd);
 void pid_control (pid_cycle_struct *pid_cycle, float target, float real);
-void UART_RECEIVE(uint8_t DATA);
 void UART_RECEIVE1(uint8_t DATA);
 void three_question(void);
+void four_question(void);
+void five_question(void);
 
 #endif

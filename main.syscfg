@@ -147,7 +147,7 @@ GPIO5.associatedPins[11].direction   = "INPUT";
 GPIO5.associatedPins[11].pin.$assign = "PA2";
 
 GPIO6.$name                              = "KEY";
-GPIO6.associatedPins.create(2);
+GPIO6.associatedPins.create(4);
 GPIO6.associatedPins[0].$name            = "EN";
 GPIO6.associatedPins[0].direction        = "INPUT";
 GPIO6.associatedPins[0].assignedPort     = "PORTA";
@@ -157,6 +157,14 @@ GPIO6.associatedPins[1].direction        = "INPUT";
 GPIO6.associatedPins[1].assignedPort     = "PORTB";
 GPIO6.associatedPins[1].internalResistor = "PULL_UP";
 GPIO6.associatedPins[1].pin.$assign      = "PB21";
+GPIO6.associatedPins[2].$name            = "Up";
+GPIO6.associatedPins[2].direction        = "INPUT";
+GPIO6.associatedPins[2].internalResistor = "PULL_UP";
+GPIO6.associatedPins[2].pin.$assign      = "PA27";
+GPIO6.associatedPins[3].$name            = "Down";
+GPIO6.associatedPins[3].internalResistor = "PULL_UP";
+GPIO6.associatedPins[3].direction        = "INPUT";
+GPIO6.associatedPins[3].pin.$assign      = "PA17";
 
 I2C1.$name                             = "I2C_MPU6050";
 I2C1.basicEnableController             = true;

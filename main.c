@@ -67,6 +67,7 @@ int main(void)
     OLED_ShowString(1,1,"TIME:",2);
     OLED_ShowNum(1,6,second,5,2);
     OLED_ShowString(1,12,"s",2);
+    OLED_ShowString(5,1,"Post",2);
     OLED_ShowString(7,1,"MODE",2);
     delay_ms(500);
     Encoder_Init();
@@ -99,13 +100,18 @@ int main(void)
             OLED_ShowSignedNum(3,6,Position,5,2);
             //OLED_ShowSignedNum(5,6,(int8_t)position_cycle.out,5,2);
             OLED_ShowNum(7,6,mode,5,2);
+            OLED_ShowSignedNum(5,6,SetPosition,5,2);
             
             
 
         }
         if(mode ==2 && flag_en){
-            DL_Timer_startCounter(TIMER_1_INST);
-            flag = 1;
+            DL_Timer_startCounter(TIMER_1_INST);   
+            if(sys_tick >= 14800){
+                flag = 0;flag_en = 0;
+                }else {
+                flag = 1;
+                }
             Follow_Route(); 
             
         }
@@ -116,6 +122,10 @@ int main(void)
         if(mode == 4 && flag_en){
             DL_Timer_startCounter(TIMER_1_INST);
             four_quesition();
+        }
+        if(mode == 5 && flag_en){
+            DL_Timer_startCounter(TIMER_1_INST);
+            five_question();
         }
 
 

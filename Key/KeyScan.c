@@ -1,5 +1,6 @@
 #include "KeyScan.h"
 
+
 volatile KEY_EVENT KeyEvent = KEY_EVENT_NONE;
 
 typedef enum
@@ -67,6 +68,10 @@ void KeyScan(void)
     KeyFSM(&key1,!DL_GPIO_readPins(KEY_EN_PORT ,KEY_EN_PIN),KEY1_PRESS);
 
     KeyFSM(&key2,!DL_GPIO_readPins(KEY_SW_PORT ,KEY_SW_PIN),KEY2_PRESS);
+
+    KeyFSM(&key3,!DL_GPIO_readPins(KEY_Up_PORT ,KEY_Up_PIN),KEY3_PRESS);
+
+    KeyFSM(&key4,!DL_GPIO_readPins(KEY_Down_PORT ,KEY_Down_PIN),KEY4_PRESS);
 }
 
 
@@ -92,13 +97,14 @@ void KeyStateProcess(void)
             break;
 
         case KEY3_PRESS:
-
+            SetPosition +=5;
 
             KeyEvent = KEY_EVENT_NONE;
 
             break;
 
         case KEY4_PRESS:
+            SetPosition -=5;
 
 
             KeyEvent = KEY_EVENT_NONE;

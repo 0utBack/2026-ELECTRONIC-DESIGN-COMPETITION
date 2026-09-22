@@ -1,6 +1,6 @@
 #include "Sensor.h"
 
-#define Black_CNT1          2000                               //mode = 1 �1�7�1�7�1�7�1�9�1�7�1�7�1�7�1�7�1�7�1�7�1�7
+#define Black_CNT1          5000                               //mode = 1 �1�7�1�7�1�7�1�9�1�7�1�7�1�7�1�7�1�7�1�7�1�7
 #define Black_CNT2          5000                               //mode = 2 �1�7�1�7�1�7�1�9�1�7�1�7�1�7�1�7�1�7�1�7�1�7
 #define Black_CNT3          5000                               //mode = 3�1�7�1�74 �1�7�1�7�1�7�1�9�1�7�1�7�1�7�1�7�1�7�1�7�1�7
 
@@ -26,6 +26,7 @@ int Follow_Route(void)
     /* �0�0�0�4�0�5 */
         if(flag == 1)                                                    //AB�1�7�1�7�0�6��
         {
+            
             if( (P1) && (P2) && (P3) )        //�1�7�1�7�0�5�1�7�1�7�1�7�8�9�1�7�1�7�1�7�1�7
             {
                 cnt++;
@@ -131,42 +132,42 @@ int Incremental_Quantity1(void)
 
     if(!P1)
     {
-        value -= 38;
+        value -= 20;
         count++;
     }
     if(!P2)
     {
-        value -= 28;
+        value -= 15;
         count++;
     }
     if(!P3)
     {
-        value -= 21;
+        value -= 11;
         count++;
     }
     if(!P4)
     {
-        value -= 14;
+        value -= 8;
         count++;
     }
     if(!P5)
     {
-        value += 14;
+        value += 8;
         count++;
     }
     if(!P6)
     {
-        value += 21;
+        value += 11;
         count++;
     }
     if(!P7)
     {
-        value += 28;
+        value += 15;
         count++;
     }
     if(!P8)
     {
-        value += 38;
+        value += 20;
         count++;
     }
 

@@ -13,7 +13,7 @@
 #define P7          DL_GPIO_readPins(Sensor_P7_PORT,Sensor_P7_PIN)
 #define P8          DL_GPIO_readPins(Sensor_P8_PORT,Sensor_P8_PIN)
 
-
+extern volatile uint32_t sys_tick;
 int Follow_Route(void);
 
 

@@ -2,6 +2,7 @@
 #define __KEYSCAN_H__
 
 #include "sys.h"
+#include "SERVO_PID.h"
 
 #define KEY1 P11_3
 #define KEY2 P11_2
