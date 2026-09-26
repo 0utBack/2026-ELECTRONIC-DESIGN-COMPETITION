@@ -6,6 +6,10 @@
 
 ![项目实物图](IMG_0891.jpeg.jpeg)
 
+## 🎬 视频演示
+
+[点击观看项目演示视频](https://www.bilibili.com/video/BV1GYas6zEE8/?p=2&share_source=copy_web&vd_source=3e91621c13c255ed93fd0535a923782b)
+
 ## 👤 作者
 - **ZhengYong Chen**
 
