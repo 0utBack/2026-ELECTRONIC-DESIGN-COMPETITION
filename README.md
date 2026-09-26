@@ -4,6 +4,9 @@
 [![Language](https://img.shields.io/badge/language-C-blue.svg)]()
 [![IDE](https://img.shields.io/badge/IDE-Keil%20%7C%20CCS-green.svg)]()
 
+## 👤 作者
+- **ZhengYong Chen**
+
 ## 📖 项目简介
 
 本项目为 **2026 年全国大学生电子设计竞赛 H 题** 的完整代码实现。系统以 **TI MSPM0G3507** 为主控，配合 **亚博 K230** 作为上位机视觉处理单元，驱动一辆载有平衡滚球装置的循线小车。
