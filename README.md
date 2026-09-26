@@ -4,6 +4,8 @@
 [![Language](https://img.shields.io/badge/language-C-blue.svg)]()
 [![IDE](https://img.shields.io/badge/IDE-Keil%20%7C%20CCS-green.svg)]()
 
+![项目实物图](IMG_0891.jpeg.jpeg)
+
 ## 👤 作者
 - **ZhengYong Chen**
 
